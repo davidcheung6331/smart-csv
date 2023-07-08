@@ -30,20 +30,16 @@ image = Image.open("bot-human-2.jpg")
 st.image(image, caption='created by MJ')
 
 
-
-load_dotenv()
-
-API_KEY = os.environ['OPENAI_API_KEY']
-llm = OpenAI(api_token=API_KEY)
-# create PandasAI object, passing the LLM
-pandas_ai = PandasAI(llm)
-
-
 st.title("🤖  :blue[CSV Smart Analysis]")
 
 system_openai_api_key = os.environ.get('OPENAI_API_KEY')
 system_openai_api_key = st.text_input(":key: OpenAI Key :", value=system_openai_api_key)
 os.environ["OPENAI_API_KEY"] = system_openai_api_key
+
+llm = OpenAI(api_token=system_openai_api_key)
+# create PandasAI object, passing the LLM
+pandas_ai = PandasAI(llm)
+
 
 uploaded_file = st.file_uploader("📂 upload a csv file for analysis", type=['csv'])
 if uploaded_file is not None:
