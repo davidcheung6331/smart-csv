@@ -53,6 +53,7 @@ Calculate the Total Survival Rate for male and female ?
 
 What are the Average Age of survived male and female ?
 
+What are the number of male and percent of survivors for male between the ages between 20 and 40 , ages between 41 and 60 and age over 60 ?  please format the output in table format with 3 columns : age group, No.of survive , Percent of survive. 
 """
 
 
