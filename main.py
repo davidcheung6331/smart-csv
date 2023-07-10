@@ -72,7 +72,9 @@ if uploaded_file is not None:
             with st.spinner("Generating ...."):
                 # st.write("Generate your results")
                 # pandas_ai = PandasAI(llm, cache_file_path=CACHE_FILE_PATH)  # Pass the cache file path
-                pandas_ai = PandasAI(llm,cache=False)   
+                # pandas_ai = PandasAI(llm,cache=False)   
+                pandas_ai = PandasAI(llm)   
+
                 result = pandas_ai.run(df, prompt)
                 st.info(result)
 
