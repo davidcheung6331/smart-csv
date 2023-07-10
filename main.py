@@ -12,7 +12,7 @@ from PIL import Image
 # streamlit
 # OpenAI
 
-CACHE_FILE_PATH = "/tmp/cache"  # Specify a different location for the cache file
+CACHE_FILE_PATH = "/tmp/cache"  # Specify a different location for the cache file.
 
 
 st.set_page_config(
@@ -71,7 +71,8 @@ if uploaded_file is not None:
         if st.button("Generate"):
             with st.spinner("Generating ...."):
                 # st.write("Generate your results")
-                pandas_ai = PandasAI(llm, cache_file_path=CACHE_FILE_PATH)  # Pass the cache file path
+                # pandas_ai = PandasAI(llm, cache_file_path=CACHE_FILE_PATH)  # Pass the cache file path
+                pandas_ai = PandasAI(llm,cache=False)   
                 result = pandas_ai.run(df, prompt)
                 st.info(result)
 
