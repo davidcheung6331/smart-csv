@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 import streamlit as st
 import pandas as pd
@@ -12,11 +12,11 @@ from PIL import Image
 # streamlit
 # OpenAI
 
-CACHE_FILE_PATH = "/tmp/cache"  # Specify a different location for the cache file.
+CACHE_FILE_PATH = "/tmp/cache"  # Specify a different location for the cache file
 
 
 st.set_page_config(
-    page_title="CSV Analysis",
+    page_title="CSV Analysis by PandasAI",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -33,10 +33,10 @@ st.image(image, caption='created by MJ')
 
 
 
-load_dotenv()
+# load_dotenv()
 
-API_KEY = os.environ['OPENAI_API_KEY']
-llm = OpenAI(api_token=API_KEY)
+# API_KEY = os.environ['OPENAI_API_KEY']
+# llm = OpenAI(api_token=system_openai_api_key)
 # create PandasAI object, passing the LLM
 # pandas_ai = PandasAI(llm)
 
@@ -46,14 +46,13 @@ st.title("🤖  :blue[CSV advanced Analysis by pandasai]")
 system_openai_api_key = os.environ.get('OPENAI_API_KEY')
 system_openai_api_key = st.text_input(":key: Step 1: Enter your OpenAI Key :", value=system_openai_api_key)
 os.environ["OPENAI_API_KEY"] = system_openai_api_key
-
+llm = OpenAI(api_token=system_openai_api_key)
 
 log = """
 Calculate the Total Survival Rate for male and female ?
 
 What are the Average Age of survived male and female ?
 
-What are the number of male and percent of survivors for male between the ages between 20 and 40 , ages between 41 and 60 and age over 60 ?  please format the output in table format with 3 columns : age group, No.of survive , Percent of survive. 
 """
 
 
@@ -72,10 +71,7 @@ if uploaded_file is not None:
         if st.button("Generate"):
             with st.spinner("Generating ...."):
                 # st.write("Generate your results")
-                # pandas_ai = PandasAI(llm, cache_file_path=CACHE_FILE_PATH)  # Pass the cache file path
-                # pandas_ai = PandasAI(llm,cache=False)   
-                pandas_ai = PandasAI(llm)   
-
+                pandas_ai = PandasAI(llm )  # Pass the cache file path
                 result = pandas_ai.run(df, prompt)
                 st.info(result)
 
